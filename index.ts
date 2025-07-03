@@ -23,6 +23,11 @@ const server = serve({
 
     // Handle both cookie-based and HTTP Basic Auth-based authentication on root
     "/": async (request) => {
+      // Handle logout on the same route with no changes to the URL structure
+      if (request.cookies.get(cookieName + "-logout") !== null) {
+        return makeLogoutResponse();
+      }
+
       // Validate the cookie for an existing session if present (logged in)
       const cookie = request.cookies.get(cookieName);
       if (cookie) {
