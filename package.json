@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "bun --hot ."
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
