@@ -18,6 +18,9 @@ const server = serve({
     // Note that this is here as Bun won't take `HTMLBundle` in a route function
     [`/${nonce}`]: index,
 
+    // Serve the PWA manifest as a `BunFile`-based response
+    "/manifest.json": () => new Response(Bun.file("./manifest.json")),
+
     // Handle both cookie-based and HTTP Basic Auth-based authentication on root
     "/": async (request) => {
       // Validate the cookie for an existing session if present (logged in)

@@ -45,4 +45,6 @@ In this repository I've implemented a flow where these cases are handled:
 
 Now it remains to be seen if this scheme works on iOS home screen pinned app.
 
-- [ ] Add progressive web app manifest to make this web app pinnable on mobile
+I've added a PWA manifest to the web app.
+
+- [ ] Test whether the PWA manifest took effect and the experiment works
