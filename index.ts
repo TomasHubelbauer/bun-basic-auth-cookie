@@ -98,16 +98,6 @@ const server = serve({
         JSON.stringify({ user: credential, cookie }, null, 2)
       );
     },
-
-    // Reuse the forced-logout response for the user-requested logout handling
-    // Note that this endpoint itself needs to present new Basic Auth challenge
-    // and not just redirect to `/` otherwise the remembered `Authorization`
-    // would cause `/` to create a new session cookie cancelling the logout
-    "/logout": () => {
-      const response = makeLogoutResponse();
-      response.headers.set("Location", "/");
-      return response;
-    },
   },
 });
 
