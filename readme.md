@@ -4,7 +4,7 @@ HTTP Basic Auth is trivial to support in Bun and it is secure when performed via
 a secure connection.
 
 However, on iOS, when pinning a PWA to the home screen and using Basic Auth to
-log into it, the authorization state won't be remember between app restarts.
+log into it, the authorization state won't be remembered between app restarts.
 
 This is less of a problem on desktop browsers where the tab can be left opened
 or even pinned so that the session state remains persisted.
