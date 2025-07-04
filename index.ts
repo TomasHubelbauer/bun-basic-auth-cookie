@@ -2,7 +2,6 @@ import { serve, CookieMap } from "bun";
 import index from "./index.html";
 import cookieName from "./cookieName.ts";
 import parseBasicCredential from "./parseBasicCredential.ts";
-import makeLogoutResponse from "./makeLogoutResponse.ts";
 
 // Use hard-coded credentials for the demonstration purposes
 import USER_NAME from "./userName.ts";
@@ -27,7 +26,11 @@ const server = serve({
     "/": async (request) => {
       // Handle logout on the same route with no changes to the URL structure
       if (request.cookies.get(cookieName + "-logout") !== null) {
-        return makeLogoutResponse();
+        request.cookies.delete(cookieName);
+        return new Response(null, {
+          status: 401,
+          headers: { "WWW-Authenticate": "Basic" },
+        });
       }
 
       // Validate the cookie for an existing session if present (logged in)
@@ -43,7 +46,11 @@ const server = serve({
 
             // Clear the cookie if the `Authorization` header is invalid and 401
             if (userName !== USER_NAME || password !== PASSWORD) {
-              return makeLogoutResponse();
+              request.cookies.delete(cookieName);
+              return new Response(null, {
+                status: 401,
+                headers: { "WWW-Authenticate": "Basic" },
+              });
             }
 
             // Let the branch fall through to success if header matches cookie
@@ -93,13 +100,17 @@ const server = serve({
 
       // Return the HTTP Basic Auth challenge (logged out or invalid credential)
       // Clear cookie pre-emptively in case it was present but had invalid auth
-      return makeLogoutResponse();
+      request.cookies.delete(cookieName);
+      return new Response(null, {
+        status: 401,
+        headers: { "WWW-Authenticate": "Basic" },
+      });
     },
 
     // Protect non-root endpoints with only the cookie-based authentication
     "/user": (request) => {
       const cookie = request.cookies.get(cookieName);
-      const credential = validateCredential(cookie);
+      const credential = validateCredential(request);
       if (credential instanceof Response) {
         return credential;
       }
