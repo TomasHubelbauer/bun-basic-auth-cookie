@@ -46,5 +46,7 @@ In this repository I've implemented a flow where these cases are handled:
 Now it remains to be seen if this scheme works on iOS home screen pinned app.
 
 I've added a PWA manifest to the web app.
+I've added a Dockerfile and deployed the web app to Sliplane at:
+https://bun-basic-auth-cookie.sliplane.app.
 
 - [ ] Test whether the PWA manifest took effect and the experiment works
