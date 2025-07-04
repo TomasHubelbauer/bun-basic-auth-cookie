@@ -1,9 +1,12 @@
 {
   "scripts": {
     "start": "bun --hot index.ts",
-    "test": "bun test"
+    "test": "bun test && bun test:e2e",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@playwright/test": "latest",
+    "@types/bun": "latest",
+    "playwright": "latest"
   }
 }

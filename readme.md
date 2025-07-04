@@ -32,6 +32,9 @@ the user.
 In this repository I've implemented several flows which are all captured in
 `index.test.ts`.
 
+There are also Playwright end to end UI tests.
+Run `bunx playwright install` once, then `bun test:e2e` to run them.
+
 Now it remains to be seen if this scheme works on iOS home screen pinned app.
 
 I've added a PWA manifest to the web app.
