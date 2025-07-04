@@ -69,6 +69,9 @@ const server = serve({
           // Prepare the cookie jar to place the nascent session cookie into
           const cookieMap = new CookieMap();
           cookieMap.set(cookieName, authorization, {
+            // Make the cookie last for a year to avoid frequent auth prompts
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
+
             // Restrict the cookie to be sent only with request to this origin
             sameSite: "strict",
 
