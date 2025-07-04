@@ -2,11 +2,11 @@
   "name": "bun-basic-auth-cookie",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "192.png",
       "sizes": "192x192"
     },
     {
-      "src": "icon-512.png",
+      "src": "512.png",
       "sizes": "512x512"
     }
   ],
