@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "bun --hot ."
+    "start": "bun --hot index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
