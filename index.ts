@@ -11,7 +11,7 @@ import validateCredential from "./validateCredential.ts";
 // Generate a random nonce to make the `HTMLBundle` direct endpoint protected
 const nonce = crypto.randomUUID();
 
-const server = serve({
+export const server = serve({
   routes: {
     // Hide the web app via the nonce to prevent direct access to `HTMLBundle`
     // Note that this is here as Bun won't take `HTMLBundle` in a route function

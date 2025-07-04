@@ -29,19 +29,8 @@ from the Safari Auto-Fill feature powered by the Passwords app and submit the
 log in form automatically, achieving smooth session preservation in the eyes of
 the user.
 
-In this repository I've implemented a flow where these cases are handled:
-
-- Access with no cookie or HTTP Basic Auth challenge retort - 401 Basic Auth
-- Access with invalid cookie - 401 Basic Auth + clear cookie
-- Access with valid cookie - 200 HMR index
-- Access with invalid HTTP Basic Auth challenge retort - 401 Basic Auth (+ inert clear cookie)
-- Access with valid HTTP Basic Auth challenge retort - 200 HMR index + set cookie
-- Access with valid cookie and valid HTTP Basic Auth challenge retort - 200 HMR index
-- Access with invalid cookie and valid HTTP Basic Auth challenge retort - 200 HMR index + set cookie
-- Access with valid cookie and invalid HTTP Basic Auth challenge retort - 401 Basic Auth + clear cookie
-- Access with invalid cookie and invalid HTTP Basic Auth challenge retort - 401 Basic Auth + clear cookie
-- Access to protected endpoint with no or invalid cookie - 401 Basic Auth + clear cookie
-- Access to protected endpoint with valid cookie - 200 OK + route data
+In this repository I've implemented several flows which are all captured in
+`index.test.ts`.
 
 Now it remains to be seen if this scheme works on iOS home screen pinned app.
 
@@ -50,3 +39,4 @@ I've added a Dockerfile and deployed the web app to Sliplane at:
 https://bun-basic-auth-cookie.sliplane.app.
 
 - [ ] Test whether the PWA manifest took effect and the experiment works
+- [ ] Add end to end UI tests with Playwright to verify the Basic Auth dialog
